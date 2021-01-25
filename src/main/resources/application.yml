@@ -1,0 +1,57 @@
+spring:
+  # 环境选择配置
+  profiles:
+    active: dev
+
+  # json转换配置
+  jackson:
+    # default-property-inclusion: non_null
+    date-format: yyyy-MM-dd HH:mm:ss
+    # time-zone: Asia/Shanghai
+    # 日期类型修改返回为时间戳格式
+    serialization:
+      write-dates-as-timestamps: true
+    default-property-inclusion: non_null
+
+  # 是否允许class覆盖（相同包路径相同类名）
+  main:
+    allow-bean-definition-overriding: true
+
+# 公司框架初始化配置
+ajframe-initialize:
+  # 应用名称
+  app-name: 新警务平台
+  # 版本
+  appVersion: 1.0
+  # 编码
+  charset: UTF-8
+  # 日志文件基础目录
+  logpath: /ajfiles/servers_files/logs/
+  system-initialize-processor-id: 同步框架时间
+  id-strings-constructor:
+    char-set: GBK
+    load-args: com.aj.frame.auth.IdStringToken
+
+
+# 定时任务
+ajframe-timetask:
+  running: true
+  processor-call-tasks:
+    - # 定时任务名称
+      name: 同步框架时间任务
+      # 定时周期
+      period: 1小时
+      # 重复调用次数
+      repeatNumber: -1
+      # 定时任务处理器ID
+      processorId: 同步框架时间
+
+auth:
+  token: G7mIT32VOMBHBqef8sOgpTGT1BlBAF
+  aeskey: BCmSiSSLVvhIOfAyMAEowphcjIJN3d3mF52BoDn02z4
+
+swagger:
+  # 系统名称
+  system-name: ${ajframe-initialize.app-name}
+  # 版本号
+  version-no: ${ajframe-initialize.appVersion}

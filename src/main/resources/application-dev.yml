@@ -1,0 +1,39 @@
+# 开发环境配置
+server:
+  # 服务端口
+  port: 8080
+  # 服务映射外网ip及端口地址
+  mapurl:
+  # 默认上传文件保存的目录
+  uploadSavePath: D:/ajfiles/auth/upload_files/
+
+# FPID_远程处理器
+fpid-remote-processor:
+  # FPID_远程处理器
+  transport-proxy-processor:
+    processor-id: FPID_远程处理器
+    storage-path: /ajfiles/client
+    file-transmission-enabled: true
+  # 远程处理器服务传输通道工厂
+  transport-channel-factory:
+    default-connector:
+      # 连接目标地址集（connect时会自动在多个地址中随机选择可用地址）- 192.168.0.33:20041    192.168.8.215
+      urls:
+        - 127.0.0.1:20141
+  # 二进制传输客户端通道
+  socket-binary-client-channel:
+    zip-limit: 1024
+  aj-files-clear-processor:
+    storage-path: ${fpid-remote-processor.transport-proxy-processor.storage-path}
+
+
+weixin:
+  miniprogram:
+    # 小程序 url
+    serverUrl: https://api.weixin.qq.com
+    # 小程序 appId
+    appid: wxb7c37392412c350e
+    # 小程序 appSecret
+    secret: 6467027c8e41b8f12e2e69531894b6e3
+    # 授权类型，此处只需填写 authorization_code
+    grant_type: authorization_code
